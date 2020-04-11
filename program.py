@@ -15,9 +15,7 @@ global dog_bark
 dog_bark = time.time() - 500
 
 Baby_Crying = False
-account_sid = 'AC1f6eaea77753ee79a29f0ffa8a232cf6'
-auth_token = '9031282395319050cd72c6aa3b2d97e4'
-messaging_service_sid='MGb355deb427453c0d07a7f89525a20862'
+
 
 ##Get Tensorflow Model 
 graph = tf.Graph()
