@@ -15,6 +15,7 @@ global dog_bark
 dog_bark = time.time() - 500
 
 Baby_Crying = False
+##Account Variables
 account_sid = ''
 auth_token = ''
 messaging_service_sid= ''
