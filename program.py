@@ -15,7 +15,7 @@ import time
 global dog_bark
 dog_bark = time.time() - 500
 
-with open('credentials.txt', 'r') as file
+with open('credentials.txt', 'r') as file:
     credentials = json.loads(file.read())
 
 Baby_Crying = False
