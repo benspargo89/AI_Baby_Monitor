@@ -1,5 +1,6 @@
 from __future__ import division, print_function
 import sys
+import json
 import numpy as np
 import numpy
 import resampy
@@ -14,11 +15,14 @@ import time
 global dog_bark
 dog_bark = time.time() - 500
 
+with open('credentials.txt', 'r') as file
+    credentials = json.loads(file.read())
+
 Baby_Crying = False
 ##Account Variables
-account_sid = ''
-auth_token = ''
-messaging_service_sid= ''
+account_sid = credentials['account_sid']
+auth_token = credentials['auth_token']
+messaging_service_sid = credentials['messaging_service_sid']
 
 
 ##Get Tensorflow Model 
