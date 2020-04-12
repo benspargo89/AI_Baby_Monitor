@@ -6,6 +6,8 @@ import numpy
 import resampy
 import tensorflow as tf
 import pyaudio
+import sys
+sys.path.append('models/research/audioset/yamnet')
 import params
 import yamnet as yamnet_model
 import numpy
@@ -29,12 +31,12 @@ messaging_service_sid = credentials['messaging_service_sid']
 graph = tf.Graph()
 with graph.as_default():
     yamnet = yamnet_model.yamnet_frames_model(params)
-    yamnet.load_weights('yamnet.h5')
-    yamnet_classes = yamnet_model.class_names('yamnet_class_map.csv')
+    yamnet.load_weights('models/research/audioset/yamnet/yamnet.h5')
+    yamnet_classes = yamnet_model.class_names('models/research/audioset/yamnet/yamnet_class_map.csv')
 
 ##Set Paremeters for PyAudio
 RATE=44100
-RECORD_SECONDS = 10
+RECORD_SECONDS = 5
 CHUNKSIZE = 4096
 p = pyaudio.PyAudio()
 stream = p.open(format=pyaudio.paInt16, channels=1, rate=RATE, input=True, input_device_index=2, frames_per_buffer=CHUNKSIZE)
@@ -102,6 +104,8 @@ def main(Baby_Crying):
             send_message("Someone's Crying!")
             Baby_Crying = True
             log_data(datetime.now(), "Madison started crying.")
+            print('Pausing processing for a minute...')
+            time.sleep(60)
             return Baby_Crying
     else:
         if Baby_Crying:
@@ -114,4 +118,4 @@ if __name__ == '__main__':
     while True:
         print("\n\nStarting a new round of processing...")
         Baby_Crying = main(Baby_Crying)
-        time.sleep(RECORD_SECONDS)
+        time.sleep(1)
