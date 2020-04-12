@@ -33,11 +33,11 @@ with graph.as_default():
     yamnet_classes = yamnet_model.class_names('yamnet_class_map.csv')
 
 ##Set Paremeters for PyAudio
-RATE=16000
+RATE=44100
 RECORD_SECONDS = 3
-CHUNKSIZE = 1024
+CHUNKSIZE = 4096
 p = pyaudio.PyAudio()
-stream = p.open(format=pyaudio.paInt16, channels=1, rate=RATE, input=True, frames_per_buffer=CHUNKSIZE)
+stream = p.open(format=pyaudio.paInt16, channels=1, rate=RATE, input=True, input_device_index=2, frames_per_buffer=CHUNKSIZE)
 
 def get_audio_stream():
     stream.start_stream()
@@ -48,6 +48,7 @@ def get_audio_stream():
         frames.append(numpy.fromstring(data, dtype=numpy.int16))
     waveform = numpy.hstack(frames)
     waveform = waveform / 32768.0
+    waveform = resampy.resample(waveform, RATE, 16000)
     stream.stop_stream()
     return waveform
 
