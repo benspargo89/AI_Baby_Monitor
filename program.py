@@ -34,7 +34,7 @@ with graph.as_default():
 
 ##Set Paremeters for PyAudio
 RATE=44100
-RECORD_SECONDS = 3
+RECORD_SECONDS = 10
 CHUNKSIZE = 4096
 p = pyaudio.PyAudio()
 stream = p.open(format=pyaudio.paInt16, channels=1, rate=RATE, input=True, input_device_index=2, frames_per_buffer=CHUNKSIZE)
