@@ -39,7 +39,7 @@ RATE=44100
 RECORD_SECONDS = 5
 CHUNKSIZE = 4096
 p = pyaudio.PyAudio()
-stream = p.open(format=pyaudio.paInt16, channels=1, rate=RATE, input=True, input_device_index=2, frames_per_buffer=CHUNKSIZE)
+stream = p.open(format=pyaudio.paInt16, channels=1, rate=RATE, input=True, frames_per_buffer=CHUNKSIZE)
 
 def get_audio_stream():
     stream.start_stream()
